@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from "../utils/mutations";
@@ -94,18 +94,20 @@ const SearchBooks = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
+          <Row>
+          <Col>{Auth.loggedIn() 
+                  ? (
+                    <h4>Welcome: {Auth.getProfile().data.username} </h4>
+                    ):( <h4>Welcome visitor, please login or sign up.</h4>
+                  )}
 
-        {Auth.loggedIn() 
-                ? (
-                  <h4>Welcome: {Auth.getProfile().data.username} </h4>
-                  ):( <h4>Welcome visitor, please login or sign up.</h4>
-                )}
-
-          <h1>Search for Books</h1>
+            <h1>Search for Books</h1>
+            </Col>
+            </Row>
 
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
-              <Col xs={12} md={8}>
+              <Col xs={12} md={6}>
                 <Form.Control
                   name='searchInput'
                   value={searchInput}
@@ -115,7 +117,7 @@ const SearchBooks = () => {
                   placeholder='search: book name, subject, author?'
                 />
               </Col>
-              <Col xs={12} md={4}>
+              <Col xs={12} md={6}>
                 <Button type='submit' variant='success' size='lg'>
                   Submit Search
                 </Button>
