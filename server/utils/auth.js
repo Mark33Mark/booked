@@ -1,8 +1,8 @@
 
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const secret = 'mysecretsshhhhh';
-const expiration = '12h';
+const secret = "mysecretsshhhhh";
+const expiration = "2h";
 
 module.exports = {
   authMiddleware: function({ req }) {
@@ -10,25 +10,25 @@ module.exports = {
     let token = req.body.token || req.query.token || req.headers.authorization;
   
     // separate "Bearer" from "<tokenvalue>"
-    if (req.headers.authorization) {
+    if ( req.headers.authorization ) {
       token = token
-        .split(' ')
+        .split(" ")
         .pop()
         .trim();
     }
   
     // if no token, return request object as is
-    if (!token) {
+    if ( !token ) {
       return req;
     }
   
     try {
       // decode and attach user data to request object
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      const { data } = jwt.verify( token, secret, { maxAge: expiration });
       req.user = data;
       // console.log(token)
     } catch {
-      console.log("invalid token");
+      console.log( "Problem with logging in, the login token is invalid." );
     }
   
     // return updated request object

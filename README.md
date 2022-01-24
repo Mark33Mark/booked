@@ -73,6 +73,14 @@ Additional features:
 *  Amended some of the 'phrasing'.  
 *  The look and feel of the previous RESTful version remains in tact, my additions were mostly cosmetic.  
 
+###Screengrabs  
+
+![Login Screen](./assets/screenshot1.jpg)  
+
+![Logged In](./assets/screenshot2.jpg)  
+
+![User Page](./assets/screenshot3.jpg)  
+
 ---
 
 ### 3. Installation
